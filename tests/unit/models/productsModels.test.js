@@ -5,17 +5,16 @@ const ProductsModel = require('../../../models/productsModel');
 const connection = require('../../../models/connection');
 
 describe('Busca por todos os produtos no BD', () => {
-  before(async () => {
-    const execute = [[]];
 
-    sinon.stub(connection, 'execute').resolves(execute);
-  });
+  describe('quando não existem produtos cadastrados', () => {
+    before(async () => {
+      sinon.stub(ProductsModel, 'getAll')
+        .resolves(null);
+    });
 
-  after(async () => {
-    connection.execute.restore();
-  });
-
-  describe('quando não existe os produtos', () => {
+    after(async () => {
+      ProductsModel.getAll.restore();
+    });
     it('retorna null', async () => {
       const response = await ProductsModel.getAll();
       expect(response).to.be.equal(null);
@@ -67,16 +66,10 @@ describe('Busca por todos os produtos no BD', () => {
     it('O array de objeto possui as propriedades: "id", "name"', async () => {
       const item = await ProductsModel.getAll();
 
-      expect(item).to.include.all.keys('id', 'name');
+      expect(item[0]).to.include.all.keys('id', 'name');
     });
   });
 })
-
-  
-
-
-
-
 
 describe('Busca apenas um produto no BD por seu ID', () => {
   before(async () => {

@@ -1,18 +1,26 @@
 const ProductsService = require('../services/productsService');
 
+const getAll = async (_req, res) => {
+  const products = await ProductsService.getAll();
+  if (products === null) return res.status(404).send('Not Found');
+
+  return res.status(200).json(products);
+};
+
 const findById = async (req, res) => {
   try {
     const { id } = req.params;
-    const movie = await ProductsService.findById(id);
-    if (!movie) {
-      return res.status(404).send('Not Found');
+    const product = await ProductsService.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
     }
-    res.status(200).json(movie);
+    return res.status(200).json(product);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
 module.exports = {
+  getAll,
   findById,
 };
