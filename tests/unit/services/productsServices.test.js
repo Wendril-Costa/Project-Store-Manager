@@ -72,9 +72,6 @@ describe('Busca por todos os produtos no BD', () => {
   });
 })
 
-
-
-
 describe('Busca apenas um produto no BD por seu ID', () => {
   before(async () => {
     const execute = [[]];
@@ -127,5 +124,59 @@ describe('Busca apenas um produto no BD por seu ID', () => {
 
       expect(item).to.include.all.keys('id', 'name');
     });
+  });
+});
+
+describe('Insere um novo produto no BD', () => {
+  describe('quando o payload informado não é válido', () => {
+    const payloadProduct = {};
+
+    it('retorna um code', async () => {
+      const response = await ProductsService.create(payloadProduct);
+
+      expect(response).to.have.a.property('code');
+    });
+
+    it('retorna uma message', async () => {
+      const response = await ProductsService.create(payloadProduct);
+
+      expect(response).to.have.a.property('message');
+    });
+
+  });
+
+  describe('quando é inserido com sucesso', () => {
+    const payloadProduct = {
+      id: 4,
+      name: 'Lamina do Caos',
+    };
+
+    before(() => {
+      sinon.stub(ProductsModel, 'create')
+        .resolves(payloadProduct);
+    });
+
+    after(() => {
+      ProductsModel.create.restore();
+    });
+
+    it('retorna um objeto', async () => {
+      const response = await ProductsService.create(payloadProduct);
+
+      expect(response).to.be.a('object');
+    });
+
+    it('tal objeto possui a propriedade code', async () => {
+      const response = await ProductsService.create(payloadProduct);
+
+      expect(response).to.have.a.property('code');
+    });
+
+    it('tal objeto possui a propriedade product', async () => {
+      const response = await ProductsService.create(payloadProduct);
+
+      expect(response).to.have.a.property('product');
+    });
+
   });
 });

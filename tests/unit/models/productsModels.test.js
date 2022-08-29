@@ -124,3 +124,34 @@ describe('Busca apenas um produto no BD por seu ID', () => {
     });
   });
 });
+
+describe('Insere um novo produto no BD', () => {
+  const payloadProduct = {
+    name: 'Lamina do Caos',
+  }
+
+  before(async () => {
+    const execute = [{ insertId: 1 }];
+    sinon.stub(connection, 'execute').resolves(execute);
+  });
+
+  after(async () => {
+    connection.execute.restore();
+  });
+
+  describe('quando é inserido com sucesso', () => {
+
+    it('retorna um objeto', async () => {
+      const response = await ProductsModel.create(payloadProduct);
+
+      expect(response).to.be.a('object')
+    });
+
+    it('tal objeto possui o "id" do novo produto inserido', async () => {
+      const response = await ProductsModel.create(payloadProduct);
+
+      expect(response).to.have.a.property('id')
+    });
+
+  });
+});

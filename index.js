@@ -14,3 +14,4 @@ app.listen(process.env.PORT, () => {
 });
 app.get('/products', ProductsController.getAll);
 app.get('/products/:id', ProductsController.findById);
+app.post('/products', ProductsController.create);
