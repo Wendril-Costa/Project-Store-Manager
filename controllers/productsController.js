@@ -25,12 +25,9 @@ const create = async (req, res) => {
 
   const { product, code, message } = await ProductsService.create({ name });
 
-  if (!name) return res.status(code).json({ message });
-
-  if (name.length < 5) return res.status(code).json({ message }); 
+  if (!product) return res.status(code).json({ message });
   
-  return res
-    .status(code).json(product);
+  return res.status(code).json(product);
 };
 
 module.exports = {

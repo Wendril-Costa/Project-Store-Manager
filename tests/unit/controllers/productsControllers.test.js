@@ -170,9 +170,6 @@ describe('Ao chamar o controller de create', () => {
         .returns(response);
       response.json = sinon.stub()
         .returns();
-      
-      // sinon.stub(ProductsService, 'create')
-      //   .resolves({});
     })
 
     it('é chamado o status com o código 400', async () => {
@@ -243,7 +240,7 @@ describe('Ao chamar o controller de create', () => {
       expect(response.status.calledWith(201)).to.be.equal(true);
     });
 
-    it('é chamado o json com a mensagem "Produto criado com sucesso!"', async () => {
+    it('é chamado o json com o objeto criado', async () => {
       await ProductsController.create(request, response);
 
       expect(response.json.calledWith({ id: 4, name: request.body.name })).to.be.equal(true);
