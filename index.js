@@ -20,3 +20,4 @@ app.post('/products', ProductsController.create);
 app.post('/sales', SalesCrontroller.create);
 app.get('/sales', SalesCrontroller.getAll);
 app.get('/sales/:id', SalesCrontroller.getById);
+app.put('/products/:id', ProductsController.update);

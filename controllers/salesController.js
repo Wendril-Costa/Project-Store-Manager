@@ -8,11 +8,11 @@ const getAll = async (_req, res) => {
 };
 
 const getById = async (req, res) => {
-    const { id } = req.params;
-    const { sale, code, message } = await SalesService.getById(id);
-    if (!sale) return res.status(code).json({ message });
+  const { id } = req.params;
+  const { sale, code, message } = await SalesService.getById(id);
+  if (!sale) return res.status(code).json({ message });
     
-    return res.status(code).json(sale);
+  return res.status(code).json(sale);
 };
 
 const create = async (req, res) => {

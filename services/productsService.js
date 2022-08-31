@@ -19,7 +19,7 @@ const findById = async (id) => {
 
 const isValid = (name) => {
   switch (true) {
-    case !name: return {
+    case name === undefined: return {
       code: 400,
       message: '"name" is required',
     };
@@ -41,8 +41,20 @@ const create = async ({ name }) => {
   return { code: 201, product };
 };
 
+const update = async ({ name, id }) => {
+  const upProductValid = isValid(name);
+  if (upProductValid.message) return upProductValid;
+  const productId = await findById(id);
+  const upProduct = await ProductsModel.update({ name, id });
+
+  if (!upProduct || !productId) return { code: 404, message: 'Product not found' };
+
+  return { code: 200, upProduct };
+};
+
 module.exports = {
   getAll,
   findById,
   create,
+  update,
 };
