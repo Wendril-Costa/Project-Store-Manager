@@ -20,6 +20,22 @@ const isValid = async ({ productId, quantity }) => {
     }
 };
 
+const getAll = async () => {
+  const sales = await SalesModel.getAll();
+
+  if (!sales) return { code: 404, message: 'Sale not found' };
+
+  return { code: 200, sales };
+};
+
+const getById = async (id) => {
+  const sale = await SalesModel.getById(id);
+
+  if (sale === null) return { code: 404, message: 'Sale not found' };
+
+  return { code: 200, sale };
+};
+
 const create = async (newsale) => {
   const isSaleValid = await Promise.all(
     newsale.map(({ productId, quantity }) => isValid({ productId, quantity })),
@@ -34,5 +50,7 @@ const create = async (newsale) => {
 };
 
 module.exports = {
+  getAll,
+  getById,
   create,
 };
