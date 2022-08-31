@@ -63,10 +63,19 @@ const delProduct = async ({ id }) => {
   return { code: 204 };
 };
 
+const search = async ({ q }) => {
+  const product = await getAll();
+
+  if (q.length === 0) return product;
+
+  return product.filter((e) => e.name.includes(q));
+};
+
 module.exports = {
   getAll,
   findById,
   create,
   update,
   delProduct,
+  search,
 };

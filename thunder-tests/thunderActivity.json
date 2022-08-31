@@ -1,21 +1,42 @@
 [
   {
-    "_id": "55f6b098-9076-4f8c-940b-5e1dea60e820",
+    "_id": "eb9eff8d-734d-4d06-817e-db3d8dadc615",
     "colId": "history",
     "containerId": "",
-    "name": "http://localhost:3000/sales/1 ",
-    "url": "http://localhost:3000/sales/1 ",
-    "method": "PUT",
+    "name": "http://localhost:3000/products/search?q=escudo",
+    "url": "http://localhost:3000/products/search?q=escudo",
+    "method": "GET",
     "sortNum": 0,
-    "created": "2022-08-31T22:29:09.658Z",
-    "modified": "2022-08-31T22:32:45.474Z",
+    "created": "2022-08-31T23:36:26.168Z",
+    "modified": "2022-08-31T23:36:26.193Z",
     "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "[\n    {\n      \"productId\": 1,\n      \"quantity\":1\n    },\n    {\n      \"productId\": 1,\n      \"quantity\":5\n    }\n  ]",
-      "form": []
-    },
+    "params": [
+      {
+        "name": "q",
+        "value": "escudo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "eacf0b0d-209e-49af-8e7a-a5482b1d8e27",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=Martelo",
+    "url": "http://localhost:3000/products/search?q=Martelo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-08-31T23:36:38.819Z",
+    "modified": "2022-08-31T23:40:17.960Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelo",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]

@@ -51,10 +51,18 @@ const delProduct = async (req, res) => {
   return res.status(code).end();
 };
 
+const search = async (req, res) => {
+    const { q } = req.query;
+    const products = await ProductsService.search({ q });
+
+    return res.status(200).json(products);
+};
+
 module.exports = {
   getAll,
   findById,
   create,
   update,
   delProduct,
+  search,
 };
