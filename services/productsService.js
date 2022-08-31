@@ -9,8 +9,7 @@ const getAll = async () => {
 };
 
 const findById = async (id) => {
-  const productData = await ProductsModel
-    .getById(id);
+  const productData = await ProductsModel.getById(id);
 
   if (!productData) return null;
 
@@ -54,9 +53,10 @@ const update = async ({ name, id }) => {
 
 const delProduct = async ({ id }) => {
   const productId = await findById(id);
-  await ProductsModel.delProduct({ id });
 
   if (!productId) return { code: 404, message: 'Product not found' };
+
+  await ProductsModel.delProduct({ id });
 
   return { code: 204 };
 };

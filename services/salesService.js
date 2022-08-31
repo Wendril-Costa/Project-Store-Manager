@@ -49,8 +49,19 @@ const create = async (newsale) => {
   return { code: 201, newSale };
 };
 
+const delSale = async ({ id }) => {
+  const saleId = await getById(id);
+
+  if (saleId.message) return saleId;
+
+  await SalesModel.delSale({ id });
+
+  return { code: 204 };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  delSale,
 };

@@ -50,8 +50,20 @@ const create = async (newSales) => {
   };
 };
 
+const delSale = async ({ id }) => {
+  const query = `
+    DELETE FROM StoreManager.sales_products
+    WHERE sale_id = ?;`;
+  const query2 = `
+    DELETE FROM StoreManager.sales
+    WHERE id = ?;`;
+  await connection.query(query, [id]);
+  await connection.query(query2, [id]);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  delSale,
 };
