@@ -59,9 +59,27 @@ const delSale = async ({ id }) => {
   return { code: 204 };
 };
 
+const update = async ({ id, itemsUpdated }) => {
+  const getId = await getById(id);
+
+  if (getId.message) return getId;
+
+  const upSaleValid = await Promise.all(
+    itemsUpdated.map(({ productId, quantity }) => isValid({ productId, quantity })),
+  );
+
+  const everyValid = upSaleValid.every((e) => e === 'valido');
+
+  if (!everyValid) return upSaleValid.find((e) => e !== 'valido');
+  
+  await SalesModel.update({ id, itemsUpdated });
+  return { code: 200 };
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   delSale,
+  update,
 };

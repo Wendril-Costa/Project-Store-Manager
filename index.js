@@ -23,3 +23,4 @@ app.get('/sales/:id', SalesCrontroller.getById);
 app.put('/products/:id', ProductsController.update);
 app.delete('/products/:id', ProductsController.delProduct);
 app.delete('/sales/:id', SalesCrontroller.delSale);
+app.put('/sales/:id', SalesCrontroller.update);

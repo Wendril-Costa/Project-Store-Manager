@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "55f6b098-9076-4f8c-940b-5e1dea60e820",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/1 ",
+    "url": "http://localhost:3000/sales/1 ",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-08-31T22:29:09.658Z",
+    "modified": "2022-08-31T22:32:45.474Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n    {\n      \"productId\": 1,\n      \"quantity\":1\n    },\n    {\n      \"productId\": 1,\n      \"quantity\":5\n    }\n  ]",
+      "form": []
+    },
+    "tests": []
+  }
+]

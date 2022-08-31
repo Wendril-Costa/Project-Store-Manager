@@ -61,9 +61,20 @@ const delSale = async ({ id }) => {
   await connection.query(query2, [id]);
 };
 
+const update = async ({ id, itemsUpdated }) => {
+  const updateQuery = `
+    UPDATE StoreManager.sales_products
+    SET product_id = ?, quantity = ?
+    WHERE sale_id = ? AND product_id = ?;`;
+
+  await Promise.all(itemsUpdated.map((e) =>
+    connection.query(updateQuery, [e.productId, e.quantity, id, e.productId])));
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   delSale,
+  update,
 };

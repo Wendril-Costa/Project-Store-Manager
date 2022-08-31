@@ -42,7 +42,9 @@ const create = async ({ name }) => {
 
 const update = async ({ name, id }) => {
   const upProductValid = isValid(name);
+
   if (upProductValid.message) return upProductValid;
+  
   const productId = await findById(id);
   const upProduct = await ProductsModel.update({ name, id });
 
