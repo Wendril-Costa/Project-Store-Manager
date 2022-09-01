@@ -23,7 +23,7 @@ const isValid = async ({ productId, quantity }) => {
 const getAll = async () => {
   const sales = await SalesModel.getAll();
 
-  if (!sales) return { code: 404, message: 'Sale not found' };
+  if (sales === null) return { code: 404, message: 'Sale not found' };
 
   return { code: 200, sales };
 };
